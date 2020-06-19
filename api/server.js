@@ -18,4 +18,8 @@ server.use(express.json());
 server.use('/api/auth', authRouter);
 server.use('/api/items', authenticate,  itemRouter);
 
+server.get("/", (req, res) => {
+    res.json({ api: "up" });
+  });
+
 module.exports = server;
