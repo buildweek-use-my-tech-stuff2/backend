@@ -18,10 +18,15 @@ function findById(id) {
   return db('items').where({ id })
 }
 
-function add(itemData) {
-    return db('items').insert(itemData);
-}
-
+async function add(itemData) {
+    try {
+      const [id] = await db("items").insert(itemData, "id");
+  
+      return findById(id);
+    } catch (error) {
+      throw error;
+    }
+  }
 
 function update(changes, id) {
     return db("items").where({ id }).update(changes);

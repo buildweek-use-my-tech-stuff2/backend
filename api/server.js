@@ -18,8 +18,15 @@ server.use(express.json());
 server.use('/api/auth', authRouter);
 server.use('/api/items', authenticate,  itemRouter);
 
+server.use(function(req,res,next) {
+    req.name = "devin";
+})
 server.get("/", (req, res) => {
-    res.json({ api: "up" });
-  });
+    res.json({name: req.name})
+});
+
+// server.get("/", (req, res) => {
+//     res.json({ api: "up" });
+//   });
 
 module.exports = server;
