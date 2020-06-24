@@ -36,7 +36,7 @@ router.post('/', authenticate ,checkRole(1),(req, res) => {
 
   Item.add(itemData)
   .then(items => {
-      res.status(201).json({ message: "item created!"})
+      res.status(201).json(items)
   })
   .catch ( err => {
       res.status(500).json({ message: 'Failed to create new item'})
